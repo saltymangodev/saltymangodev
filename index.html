@@ -4,31 +4,33 @@ function getJoke() {
   request.open("GET", "https://icanhazdadjoke.com/");
   request.setRequestHeader("Accept", "application/json");
   request.onload = function(){
-    document.getElementById("joke").src = `https://icanhazdadjoke.com/j/${JSON.parse(request.responseText)['id']}.png`
+    document.getElementById("joke").value = JSON.parse(request.responseText)['joke']
+    joke.innerHTML =  JSON.parse(request.responseText)['joke']
  		}
 	request.send()
 	}
 </script>
 
 <style>
+* {
+  font-size: 115%;
+  font-family: sans-serif;
+}
 .content {
   max-width: 500px;
   margin: auto;
+  
 }
 .button {
-  {
    border: 0;
    background: none;
    box-shadow: none;
-   border-radius: 0px;
-  }
+   border-radius: 50px; 
 }
 </style>
 
 <center>
-<img id='joke' />
+  <p id='joke'></p>
 <br><br>
-<button onClick="getJoke()">
-  Click for Dad Joke
-</button>
+  <button onClick="getJoke()">Click for a Joke</button>
 </center>
